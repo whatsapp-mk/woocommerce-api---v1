@@ -35,8 +35,8 @@ def ChromeBrowser():
       print("Check your username and password before trying again")
 
   def changeText():
-    RunDriver()
     try:
+      RunDriver()
       print("Page loading")
       url = 'https://welightbox.com/mk/wp-admin/post.php?post=2&action=edit'
       driver.get(url)
@@ -46,7 +46,7 @@ def ChromeBrowser():
       driver.find_element_by_xpath('//*[@id="editor"]/div/div[1]/div[1]/div[2]/div[2]/div[3]/div[2]/div/div[2]/div[1]/h1').click()
       while True:
         for word in words:
-          time.sleep(6)
+          time.sleep(8)
           driver.find_element_by_xpath('//*[@id="editor"]/div/div[1]/div[1]/div[2]/div[2]/div[3]/div[2]/div/div[2]/div[1]/h1').clear()
           time.sleep(1)
           driver.find_element_by_xpath('//*[@id="editor"]/div/div[1]/div[1]/div[2]/div[2]/div[3]/div[2]/div/div[2]/div[1]/h1').send_keys(word)
@@ -56,17 +56,15 @@ def ChromeBrowser():
       driver.quit()
     except:
       print("Error !!")
-  try:
-    login()
-  except:
-    print("Error in login fonction !!")
+      driver.quit()
+      time.sleep(10)
+
+  # try:
+  #   login()
+  # except:
+  #   print("Error in login fonction !!")
   
-  while True:
-    try:
-      changeText()
-    except:
-      time.sleep(10)  
-      changeText()
+  changeText()
 
 
 
@@ -76,3 +74,4 @@ while True:
     ChromeBrowser()
   except:
     ChromeBrowser()
+    time.sleep(10) 
